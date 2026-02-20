@@ -21,18 +21,36 @@ podman-compose run --rm freqtrade backtesting --config $config --strategy $strat
 
 # 2. Find the latest backtest result
 # Check the Documents folder for results
-$latest_file = Get-ChildItem "C:\Users\alexg\Documents\Freqtrade\user_data\backtest_results\backtest-result-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+$latest_zip = Get-ChildItem "C:\Users\alexg\Documents\Freqtrade\user_data\backtest_results\backtest-result-*.zip" -Exclude "*.meta.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
-if (-not $latest_file) {
+if (-not $latest_zip) {
     Write-Error "Regression test failed: No backtest result file found in 'freqtrade/user_data/backtest_results/'."
     exit 1
 }
 
-Write-Host "Parsing output file: $($latest_file.Name)"
+Write-Host "Found latest result: $($latest_zip.Name)"
 
-# 3. Parse JSON Results
+# 3. Parse JSON Results from Zip
 try {
-    $json = Get-Content $latest_file.FullName | ConvertFrom-Json
+    # Create temp directory
+    $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.Guid]::NewGuid().ToString())
+    New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+    
+    # Extract
+    Expand-Archive -Path $latest_zip.FullName -DestinationPath $tempDir -Force
+    
+    # Find JSON file inside
+    $jsonFile = Get-ChildItem $tempDir -Filter "*.json" | Select-Object -First 1
+    
+    if (-not $jsonFile) {
+        throw "No JSON string found in zip archive"
+    }
+
+    Write-Host "Parsing JSON: $($jsonFile.Name)"
+    $json = Get-Content $jsonFile.FullName | ConvertFrom-Json
+    
+    # Cleanup
+    Remove-Item -Recurse -Force $tempDir
     
     # Structure is usually: $json.strategy.CombinedStrategy ...
     # API might return a list or dict. Let's inspect the first strategy found if key matches.
