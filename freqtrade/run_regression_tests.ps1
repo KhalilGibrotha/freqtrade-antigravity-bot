@@ -2,8 +2,8 @@
 # Regression Test Script for Freqtrade
 # Goal: Verify that CombinedStrategy performance has not degraded below baseline.
 
-$baseline_profit = -0.06  # Allow down to -6% (Actual was -5.18%)
-$baseline_drawdown = 0.085 # Allow up to 8.5% (Actual was 7.60%)
+$baseline_profit = -0.04  # Improved from -6.0% to ~ -3.0%
+$baseline_drawdown = 0.04 # Improved from 8.5% to ~ 3.0%
 $strategy = "CombinedStrategy"
 $timerange = "20251120-"
 $config = "user_data/config_backtest.json"
