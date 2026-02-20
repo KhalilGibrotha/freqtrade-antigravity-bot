@@ -25,7 +25,7 @@ services:
       --strategy SniperStrategy
 
   freqtrade-freqai:
-    image: freqtradeorg/freqtrade:stable
+    image: freqtradeorg/freqtrade:stable_freqai
     restart: unless-stopped
     container_name: freqtrade-freqai
     ports:

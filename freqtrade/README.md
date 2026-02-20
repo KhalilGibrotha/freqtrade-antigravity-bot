@@ -69,12 +69,17 @@ Our iterative development process tracked the following milestones:
 *   Utilized **Hyperopt** for 100 epochs to machine-optimize `CombinedStrategy`, resulting in a **+50% profit improvement and -64% drawdown reduction** in historical tests.
 *   Integrated **FreqAI** (XGBoost Regressor) with custom feature engineering (`FreqAIStrategy`) and rolling window training.
 
+### 5. Quantitative Research (Data Science)
+*   **Feature Engineering:** Enhanced FreqAI model (`FreqAIStrategy.py`) with advanced features (ATR, Bollinger Width, MACD Hist) and global market correlation (`BTC/USDT`).
+*   **Target Tuning:** Transitioned FreqAI from predicting strict % returns to evaluating Risk/Reward (Max Profit vs Max Drawdown potentials).
+*   **Hyperparameter Tuning:** Fine-tuned XGBoost Regressor parameters (`max_depth=3`, `learning_rate=0.05`) to prevent overfitting, reducing strategy max drawdown from ~58% to ~28%.
+
 ---
 
-## 🗺️ Future Roadmap
+## 🗺️ Future Roadmap (Pick Up Here)
 
-1.  **Cloud VPS Deployment:** Migrate the Podman compose stack from the local Windows machine to a dedicated Linux cloud server (e.g., DigitalOcean, AWS) for true 24/7/365 reliability and lower latency.
-2.  **Continuous Integration (CI/CD):** Set up GitHub Actions to automatically run the `run_regression_tests.ps1` script whenever new strategy code is pushed to the repository.
-3.  **FreqAI Tuning:** Tune the XGBoost hyperparameters, expand the feature set (e.g., adding correlating pairs), and evaluate the model's out-of-sample performance.
+### Track 4: Infrastructure & DevOps
+1.  **Cloud VPS Deployment Architecture:** Migrate the Podman compose stack from the local Windows machine to a dedicated Linux cloud server (e.g., DigitalOcean, AWS) for true 24/7/365 reliability and lower latency.
+2.  **Continuous Integration (CI/CD):** Set up a pipeline (e.g., GitHub Actions) for automated backtesting & model retraining when new data is pushed.
+3.  **Logging and Monitoring:** Set up a centralized logging and monitoring stack (Prometheus/Grafana) for the bot swarm.
 4.  **Live Trading Migration:** Once dry-run simulation proves profitable over a 1-month period on the VPS, configure live exchange API keys with a small initial capital allocation.
-5.  **Offshore Exchange Integration:** Research and integrate an exchange that supports margin/shorting for US citizens (or using decentralization) to unlock the `ShortStrategy` potential during bear markets.
