@@ -14,3 +14,204 @@
 2026-02-20 04:58:50,337 - freqtrade.exchange.exchange - INFO - Instance is running with dry_run enabled
 2026-02-20 04:58:50,338 - freqtrade.exchange.exchange - INFO - Using CCXT 4.5.34
 2026-02-20 04:58:50,346 - freqtrade.exchange.exchange - INFO - Using Exchange "Kraken"
+2026-02-20 04:58:51,750 - freqtrade.resolvers.exchange_resolver - INFO - Using resolved exchange 'Kraken'...
+2026-02-20 04:58:51,837 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy SniperStrategy from '/freqtrade/user_data/strategies/SniperStrategy.py'...
+2026-02-20 04:58:51,839 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2026-02-20 04:58:51,839 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value from the configuration: USDT.
+2026-02-20 04:58:51,840 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value from the configuration: unlimited.
+2026-02-20 04:58:51,840 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value from the configuration: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2026-02-20 04:58:51,841 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value from the configuration: 3.
+2026-02-20 04:58:51,842 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {'0': 0.1, '40': 0.05, '80': 0.02}
+2026-02-20 04:58:51,842 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 5m
+2026-02-20 04:58:51,843 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.05
+2026-02-20 04:58:51,843 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2026-02-20 04:58:51,844 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2026-02-20 04:58:51,844 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2026-02-20 04:58:51,845 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2026-02-20 04:58:51,846 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2026-02-20 04:58:51,846 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2026-02-20 04:58:51,847 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2026-02-20 04:58:51,847 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2026-02-20 04:58:51,848 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: unlimited
+2026-02-20 04:58:51,848 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2026-02-20 04:58:51,849 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2026-02-20 04:58:51,849 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2026-02-20 04:58:51,850 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2026-02-20 04:58:51,850 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2026-02-20 04:58:51,851 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2026-02-20 04:58:51,851 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2026-02-20 04:58:51,851 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2026-02-20 04:58:51,852 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2026-02-20 04:58:51,852 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2026-02-20 04:58:51,852 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: 3
+2026-02-20 04:58:51,853 - freqtrade.configuration.config_validation - INFO - Validating configuration ...
+2026-02-20 04:58:52,214 - freqtrade.wallets - INFO - Wallets synced.
+2026-02-20 04:58:52,362 - freqtrade.rpc.rpc_manager - INFO - Enabling rpc.api_server
+2026-02-20 04:58:52,600 - freqtrade.rpc.api_server.webserver - INFO - Starting HTTP Server at 0.0.0.0:8081
+2026-02-20 04:58:52,601 - freqtrade.rpc.api_server.webserver - INFO - Starting Local Rest Server.
+2026-02-20 04:58:52,631 - uvicorn.error - INFO - Started server process [1]
+2026-02-20 04:58:52,632 - uvicorn.error - INFO - Waiting for application startup.
+2026-02-20 04:58:52,633 - uvicorn.error - INFO - Application startup complete.
+2026-02-20 04:58:52,635 - uvicorn.error - INFO - Uvicorn running on http://0.0.0.0:8081 (Press CTRL+C to quit)
+2026-02-20 04:58:52,639 - freqtrade.resolvers.iresolver - INFO - Using resolved pairlist StaticPairList from '/freqtrade/freqtrade/plugins/pairlist/StaticPairList.py'...
+2026-02-20 04:58:52,640 - freqtrade.freqtradebot - INFO - Starting initial pairlist refresh
+2026-02-20 04:58:52,649 - freqtrade.plugins.pairlistmanager - INFO - Whitelist with 4 pairs: ['BTC/USDT', 'ETH/USDT', 'SOL/USDT', 'XRP/USDT']
+2026-02-20 04:58:52,650 - freqtrade.freqtradebot - INFO - Initial Pairlist refresh took 0.01s
+2026-02-20 04:58:52,652 - freqtrade.plugins.protectionmanager - INFO - No protection Handlers defined.
+2026-02-20 04:58:52,652 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': status, 'status': 'running'}
+2026-02-20 04:58:52,653 - freqtrade.worker - INFO - Changing state to: RUNNING
+2026-02-20 04:58:52,679 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': warning, 'status': 'Dry run is enabled. All trades are simulated.'}
+2026-02-20 04:58:52,680 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': startup, 'status': "*Exchange:* `kraken`\n*Stake per trade:* `unlimited USDT`\n*Minimum ROI:* `{'0': 0.1, '40': 0.05, '80': 0.02}`\n*Stoploss:* `-0.05`\n*Position adjustment:* `Off`\n*Timeframe:* `5m`\n*Strategy:* `SniperStrategy`"}
+2026-02-20 04:58:52,681 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': startup, 'status': "Searching for USDT pairs to buy and sell based on [{'StaticPairList': 'StaticPairList'}]"}
+2026-02-20 04:58:57,687 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 04:59:10,916 - uvicorn.access - INFO - 10.89.1.1:64317 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 04:59:57,690 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:01:01,034 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:02:01,038 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:03:01,041 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:04:01,045 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:05:06,001 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:06:06,004 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:07:06,007 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:07:20,217 - uvicorn.access - INFO - 10.89.1.1:54264 - "GET / HTTP/1.1" 200
+2026-02-20 05:07:20,252 - uvicorn.access - INFO - 10.89.1.1:54264 - "GET /assets/index-BZc9j5jq.js HTTP/1.1" 200
+2026-02-20 05:07:20,256 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /assets/index-CJA4txlp.css HTTP/1.1" 200
+2026-02-20 05:07:20,370 - uvicorn.access - INFO - 10.89.1.1:54264 - "GET /ui_version HTTP/1.1" 200
+2026-02-20 05:07:20,373 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /assets/freqtrade-logo-C0SSQ9oN.png HTTP/1.1" 200
+2026-02-20 05:07:20,375 - uvicorn.access - INFO - 10.89.1.1:54264 - "GET /assets/HomeView-CBs6y_Fe.css HTTP/1.1" 200
+2026-02-20 05:07:20,378 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /assets/HomeView-kkDw5eP8.js HTTP/1.1" 200
+2026-02-20 05:07:20,382 - uvicorn.access - INFO - 10.89.1.1:54264 - "GET /assets/check-CDHDA7OO.js HTTP/1.1" 200
+2026-02-20 05:07:20,384 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /assets/useSortable-jtnNPDb0-g2FwCgyS.js HTTP/1.1" 200
+2026-02-20 05:07:20,541 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /assets/freqtrade-logo-mask-CLbwxeQA.png HTTP/1.1" 200
+2026-02-20 05:07:20,560 - uvicorn.access - INFO - 10.89.1.1:52459 - "GET /favicon.ico HTTP/1.1" 200
+2026-02-20 05:07:50,393 - uvicorn.access - INFO - 10.89.1.1:50726 - "GET /assets/LoginView-BLag3tbc.js HTTP/1.1" 200
+2026-02-20 05:07:50,395 - uvicorn.access - INFO - 10.89.1.1:56135 - "GET /assets/DraggableContainer.vue_vue_type_script_setup_true_lang-BzVtfZC1.js HTTP/1.1" 200
+2026-02-20 05:08:06,010 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:08:19,062 - uvicorn.access - INFO - 10.89.1.1:60542 - "POST /api/v1/token/login HTTP/1.1" 200
+2026-02-20 05:08:19,092 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/DashboardView-D36hoAnb.js HTTP/1.1" 200
+2026-02-20 05:08:19,094 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 05:08:19,098 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/TradesLogChart-BqVEKjdH.css HTTP/1.1" 200
+2026-02-20 05:08:19,100 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/InfoBox-CeUJXDND.css HTTP/1.1" 200
+2026-02-20 05:08:19,105 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/PeriodBreakdown-2lZy5GgJ.css HTTP/1.1" 200
+2026-02-20 05:08:19,106 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/TradesLogChart-CfQBqK-n.js HTTP/1.1" 200
+2026-02-20 05:08:19,110 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/installCanvasRenderer-CbXPLKA_.js HTTP/1.1" 200
+2026-02-20 05:08:19,112 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/chartZoom-DTZKGZS5.js HTTP/1.1" 200
+2026-02-20 05:08:19,119 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/ftEchartsTransforms-BSMFLV5r.js HTTP/1.1" 200
+2026-02-20 05:08:19,122 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/index-C_SHEAl_.js HTTP/1.1" 200
+2026-02-20 05:08:19,127 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/index-BGTkPPzV.js HTTP/1.1" 200
+2026-02-20 05:08:19,132 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/index-CjGztFJG.js HTTP/1.1" 200
+2026-02-20 05:08:19,134 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/index-D6ZE21uO.js HTTP/1.1" 200
+2026-02-20 05:08:19,138 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/index-BOCRrLld.js HTTP/1.1" 200
+2026-02-20 05:08:19,144 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/index-DVM8m-Hl.js HTTP/1.1" 200
+2026-02-20 05:08:19,146 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/index-BkIUDSN_.js HTTP/1.1" 200
+2026-02-20 05:08:19,151 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/InfoBox.vue_vue_type_script_setup_true_lang-DA8VQFUN.js HTTP/1.1" 200
+2026-02-20 05:08:19,152 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /assets/index-nwyQp5sF.js HTTP/1.1" 200
+2026-02-20 05:08:19,157 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /assets/PeriodBreakdown.vue_vue_type_script_setup_true_lang-BoEcaRZs.js HTTP/1.1" 200
+2026-02-20 05:08:19,161 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/show_config HTTP/1.1" 200
+2026-02-20 05:08:19,205 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/trades?limit=500&offset=0 HTTP/1.1" 200
+2026-02-20 05:08:19,214 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /api/v3/simple/price?ids=tether&vs_currencies=usd
+2026-02-20 05:08:19,354 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/balance HTTP/1.1" 200
+2026-02-20 05:08:19,357 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /api/v1/profit HTTP/1.1" 200
+2026-02-20 05:08:19,366 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/whitelist HTTP/1.1" 200
+2026-02-20 05:08:19,368 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /api/v1/blacklist HTTP/1.1" 200
+2026-02-20 05:08:19,370 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/show_config HTTP/1.1" 200
+2026-02-20 05:08:19,392 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /api/v1/daily?timescale=20 HTTP/1.1" 200
+2026-02-20 05:08:19,407 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/daily?timescale=30 HTTP/1.1" 200
+2026-02-20 05:08:19,415 - uvicorn.access - INFO - 10.89.1.1:54322 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:19,417 - uvicorn.access - INFO - 10.89.1.1:57563 - "GET /api/v1/profit HTTP/1.1" 200
+2026-02-20 05:08:19,453 - uvicorn.access - INFO - 10.89.1.1:57563 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:19,469 - uvicorn.access - INFO - 10.89.1.1:54322 - "GET /api/v1/show_config HTTP/1.1" 200
+2026-02-20 05:08:19,473 - uvicorn.access - INFO - 10.89.1.1:51684 - "GET /api/v1/trades?limit=500&offset=0 HTTP/1.1" 200
+2026-02-20 05:08:19,477 - uvicorn.access - INFO - 10.89.1.1:62487 - "GET /api/v1/whitelist HTTP/1.1" 200
+2026-02-20 05:08:19,479 - uvicorn.access - INFO - 10.89.1.1:60542 - "GET /api/v1/profit_all HTTP/1.1" 200
+2026-02-20 05:08:19,480 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/balance HTTP/1.1" 200
+2026-02-20 05:08:19,487 - uvicorn.access - INFO - 10.89.1.1:57563 - "GET /api/v1/blacklist HTTP/1.1" 200
+2026-02-20 05:08:19,492 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:19,715 - uvicorn.error - INFO - 10.89.1.1:53496 - "WebSocket /api/v1/message/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJ1IjoiZnJlcXRyYWRlciJ9LCJleHAiOjE3NzE1NjQ5OTksImlhdCI6MTc3MTU2NDA5OSwidHlwZSI6ImFjY2VzcyJ9.Vttid4uQj-psAJDIxZbbfEiGYam4ZXDoima8kRLRsRg" [accepted]
+2026-02-20 05:08:19,717 - freqtrade.rpc.api_server.ws.channel - INFO - Connected to channel - WebSocketChannel(336dadc6, ('10.89.1.1', 53496))
+2026-02-20 05:08:19,718 - uvicorn.error - INFO - connection open
+2026-02-20 05:08:19,745 - uvicorn.error - INFO - 10.89.1.1:53945 - "WebSocket /api/v1/message/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJ1IjoiZnJlcXRyYWRlciJ9LCJleHAiOjE3NzE1NjQ5OTksImlhdCI6MTc3MTU2NDA5OSwidHlwZSI6ImFjY2VzcyJ9.Vttid4uQj-psAJDIxZbbfEiGYam4ZXDoima8kRLRsRg" [accepted]
+2026-02-20 05:08:19,746 - freqtrade.rpc.api_server.ws.channel - INFO - Connected to channel - WebSocketChannel(94bd2420, ('10.89.1.1', 53945))
+2026-02-20 05:08:19,747 - uvicorn.error - INFO - connection open
+2026-02-20 05:08:19,790 - uvicorn.error - INFO - 10.89.1.1:58315 - "WebSocket /api/v1/message/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJ1IjoiZnJlcXRyYWRlciJ9LCJleHAiOjE3NzE1NjQ5OTksImlhdCI6MTc3MTU2NDA5OSwidHlwZSI6ImFjY2VzcyJ9.Vttid4uQj-psAJDIxZbbfEiGYam4ZXDoima8kRLRsRg" [accepted]
+2026-02-20 05:08:19,791 - freqtrade.rpc.api_server.ws.channel - INFO - Connected to channel - WebSocketChannel(3d3ada6b, ('10.89.1.1', 58315))
+2026-02-20 05:08:19,793 - uvicorn.error - INFO - connection open
+2026-02-20 05:08:20,382 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:20,402 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 05:08:20,422 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:25,382 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:25,394 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:30,391 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:30,401 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:35,376 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:35,388 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:40,385 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:40,400 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:45,377 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:45,390 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:50,376 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:50,387 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:08:55,394 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:08:55,407 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:00,382 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:00,394 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:05,381 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:05,394 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:06,013 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:09:10,380 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:10,393 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:15,376 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:15,387 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:20,378 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:20,390 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:20,393 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 05:09:25,376 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:25,388 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:30,393 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:30,403 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:35,384 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:35,400 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:40,384 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:40,396 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:45,396 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:45,408 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:50,391 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:50,403 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:09:55,383 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:09:55,395 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:00,395 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:00,405 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:05,385 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:05,399 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:06,152 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:10:10,391 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:10,402 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:15,398 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:15,409 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:20,400 - uvicorn.access - INFO - 10.89.1.1:59912 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 05:10:20,402 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:20,415 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:10:25,392 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:10:25,404 - uvicorn.access - INFO - 10.89.1.1:58274 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:11:06,155 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:11:21,703 - uvicorn.access - INFO - 10.89.1.1:57356 - "GET /api/v1/ping HTTP/1.1" 200
+2026-02-20 05:11:26,393 - uvicorn.access - INFO - 10.89.1.1:57356 - "GET /api/v1/status HTTP/1.1" 200
+2026-02-20 05:11:26,406 - uvicorn.access - INFO - 10.89.1.1:57356 - "GET /api/v1/locks HTTP/1.1" 200
+2026-02-20 05:12:06,159 - freqtrade.worker - INFO - Bot heartbeat. PID=1, version='2026.1', state='RUNNING'
+2026-02-20 05:12:15,403 - freqtrade.commands.trade_commands - INFO - worker found ... calling exit
+2026-02-20 05:12:15,404 - freqtrade.rpc.rpc_manager - INFO - Sending rpc message: {'type': status, 'status': 'process died'}
+2026-02-20 05:12:15,405 - freqtrade.freqtradebot - INFO - Cleaning up modules ...
+2026-02-20 05:12:15,406 - freqtrade.rpc.rpc_manager - INFO - Cleaning up rpc modules ...
+2026-02-20 05:12:15,407 - freqtrade.rpc.rpc_manager - INFO - Cleaning up rpc.apiserver ...
+2026-02-20 05:12:15,408 - freqtrade.rpc.api_server.webserver - INFO - Stopping API Server
+2026-02-20 05:12:15,433 - uvicorn.error - INFO - Shutting down
+2026-02-20 05:12:15,435 - uvicorn.error - INFO - connection closed
+2026-02-20 05:12:15,436 - uvicorn.error - INFO - connection closed
+2026-02-20 05:12:15,437 - uvicorn.error - INFO - connection closed
+2026-02-20 05:12:15,437 - freqtrade.rpc.api_server.ws.channel - INFO - Disconnected from channel - WebSocketChannel(94bd2420, ('10.89.1.1', 53945))
+2026-02-20 05:12:15,438 - freqtrade.rpc.api_server.ws.channel - INFO - Disconnected from channel - WebSocketChannel(336dadc6, ('10.89.1.1', 53496))
+2026-02-20 05:12:15,439 - freqtrade.rpc.api_server.ws.channel - INFO - Disconnected from channel - WebSocketChannel(3d3ada6b, ('10.89.1.1', 58315))
+2026-02-20 05:12:15,535 - uvicorn.error - INFO - Waiting for application shutdown.
+2026-02-20 05:12:15,537 - uvicorn.error - INFO - Application shutdown complete.
+2026-02-20 05:12:15,538 - uvicorn.error - INFO - Finished server process [1]
+2026-02-20 05:12:15,792 - freqtrade - INFO - SIGINT received, aborting ...

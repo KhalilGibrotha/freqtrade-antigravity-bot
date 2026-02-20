@@ -17,4 +17,4 @@ $plot_cmd = "pip install plotly && freqtrade plot-dataframe --config $config --s
 podman-compose run --rm --entrypoint /bin/sh freqtrade -c "$plot_cmd"
 
 Write-Host "Report generation complete."
-Write-Host "Check 'user_data/plot/' for the HTML files."
+Write-Host "Check 'C:\Users\alexg\Documents\Freqtrade\user_data\plot\' for the HTML files."

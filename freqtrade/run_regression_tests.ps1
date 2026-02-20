@@ -20,7 +20,8 @@ Write-Host "Executing Freqtrade Backtest..."
 podman-compose run --rm freqtrade backtesting --config $config --strategy $strategy --timerange $timerange
 
 # 2. Find the latest backtest result
-$latest_file = Get-ChildItem "freqtrade/user_data/backtest_results/backtest-result-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+# Check the Documents folder for results
+$latest_file = Get-ChildItem "C:\Users\alexg\Documents\Freqtrade\user_data\backtest_results\backtest-result-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
 if (-not $latest_file) {
     Write-Error "Regression test failed: No backtest result file found in 'freqtrade/user_data/backtest_results/'."

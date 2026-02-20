@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./user_data:/freqtrade/user_data
+      - ../../../../../Documents/Freqtrade/user_data:/freqtrade/user_data
 
   freqtrade-experimental:
     image: freqtradeorg/freqtrade:stable
@@ -16,7 +16,7 @@ services:
     ports:
       - "8081:8081"
     volumes:
-      - ./user_data:/freqtrade/user_data
+      - ../../../../../Documents/Freqtrade/user_data:/freqtrade/user_data
     command: >
       trade
       --logfile /freqtrade/user_data/logs/freqtrade-experimental.log
