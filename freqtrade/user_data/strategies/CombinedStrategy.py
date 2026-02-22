@@ -23,6 +23,10 @@ class CombinedStrategy(IStrategy):
     # Higher timeframe for regime filter
     informative_timeframe = '1h'
 
+    # Ensure we download enough historical data to calculate the 1h 200 EMA
+    # 200 candles on 1h = 200 hours. We need 200 hours / (5 min candles per hour) = 2400 candles on the 5m timeframe
+    startup_candle_count: int = 2400
+
     def informative_pairs(self):
         """
         Define additional informative pair/timeframe combinations to provide to the strategy.
