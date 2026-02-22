@@ -1,6 +1,6 @@
 {
     "strategy": "SniperStrategy",
-    "max_open_trades": 3,
+    "max_open_trades": 10,
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
     "tradable_balance_ratio": 0.99,
@@ -20,6 +20,8 @@
         "price_side": "same",
         "use_order_book": true,
         "order_book_top": 1,
+        "price_side_bid": "ask",
+        "price_side_ask": "bid",
         "price_last_balance": 0.0,
         "check_depth_of_market": {
             "enabled": false,
@@ -27,7 +29,7 @@
         }
     },
     "exit_pricing": {
-        "price_side": "same",
+        "price_side": "other",
         "use_order_book": true,
         "order_book_top": 1
     },
@@ -49,7 +51,22 @@
     },
     "pairlists": [
         {
-            "method": "StaticPairList"
+            "method": "VolumePairList",
+            "number_assets": 40,
+            "sort_key": "quoteVolume",
+            "min_value": 0,
+            "refresh_period": 1800
+        },
+        {
+            "method": "AgeFilter",
+            "min_days_listed": 3
+        },
+        {
+            "method": "SpreadFilter",
+            "max_spread_ratio": 0.01
+        },
+        {
+            "method": "ShuffleFilter"
         }
     ],
     "telegram": {

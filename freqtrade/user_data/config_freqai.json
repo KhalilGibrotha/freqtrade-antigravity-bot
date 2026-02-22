@@ -1,7 +1,6 @@
 {
     "strategy": "FreqAIStrategy",
-    "freqaimodel": "XGBoostRegressor",
-    "max_open_trades": 5,
+    "max_open_trades": 10,
     "stake_currency": "USDT",
     "stake_amount": "unlimited",
     "tradable_balance_ratio": 0.99,
@@ -36,11 +35,11 @@
         "name": "binanceus",
         "key": "",
         "secret": "",
-        "ccxt_config": {},
-        "ccxt_async_config": {},
         "pair_whitelist": [
             "BTC/USDT",
-            "ETH/USDT"
+            "ETH/USDT",
+            "SOL/USDT",
+            "XRP/USDT"
         ],
         "pair_blacklist": [
             "BNB/.*"
@@ -56,39 +55,46 @@
         "purge_old_models": true,
         "train_period_days": 15,
         "backtest_period_days": 7,
-        "live_retrain_hours": 24,
-        "identifier": "freqai_alpha",
+        "identifier": "freqai-xgboost-v4",
         "feature_parameters": {
             "include_timeframes": [
                 "5m",
+                "15m",
                 "1h"
             ],
-            "include_corr_pairlist": [],
+            "include_corr_pairlist": [
+                "BTC/USDT"
+            ],
             "label_period_candles": 20,
             "include_shifted_candles": 2,
-            "DI_threshold": 0.9,
-            "weight_factor": 0.9,
             "indicator_periods_candles": [
                 10,
                 20
-            ]
+            ],
+            "plot_feature_importances": 0
         },
         "data_split_parameters": {
-            "test_size": 0.25,
-            "random_state": 42
+            "test_size": 0.33,
+            "random_state": 1
         },
         "model_training_parameters": {
+            "n_estimators": 200,
             "learning_rate": 0.05,
-            "n_estimators": 100
+            "max_depth": 3,
+            "gamma": 1,
+            "subsample": 0.8,
+            "colsample_bytree": 0.8
         }
     },
-    "api_server": {
+    "telegram": {
         "enabled": false,
+        "token": "",
+        "chat_id": ""
+    },
+    "api_server": {
+        "enabled": true,
         "listen_ip_address": "0.0.0.0",
-        "listen_port": 8080,
-        "verbosity": "info",
-        "jwt_secret_key": "freqai_secret",
-        "CORS_origins": [],
+        "listen_port": 8082,
         "username": "freqtrader",
         "password": "SuperSecurePassword123!"
     },
