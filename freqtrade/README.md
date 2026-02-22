@@ -22,6 +22,17 @@ All bots share a persistent volume mapping to the Windows Host (`Documents/Freqt
 
 ## ⚡ Capabilities & Limitations
 
+### 🎯 How the Bot Selects Trading Pairs (Dynamic Pairlists)
+Instead of relying on an outdated, static list of coins, the `Production` and `Experimental` bots use Freqtrade's advanced **Dynamic Pairlists** to continuously scan the market:
+1.  **Volume Base (VolumePairList):** Every 30 minutes, the bot queries the exchange for the highest-volume trading pairs (Top 20 or Top 40). This guarantees the bot only trades active, highly liquid markets and ignores dead altcoins.
+2.  **Safety Filters:**
+    *   **AgeFilter:** Rejects new token listings (e.g., < 10 days old) to avoid wild, unpredictable launch volatility.
+    *   **SpreadFilter:** Rejects coins with massive bid/ask spreads (e.g., > 0.5%) to prevent instant slippage losses on market-buy executions.
+    *   **Price & Range Filters:** Eliminates "penny cryptos" (prone to severe rounding errors) and stablecoins (which mathematically lack the volatility required for the bot to profit).
+3.  **Optimization:** The list is then randomized (`ShuffleFilter`) to prevent bias toward Bitcoin, and continuously sorted by historical profitability (`PerformanceFilter`) targeting pairs the bot has historically won the most trades on.
+
+*(Note: The `FreqAI` instances use a traditional `StaticPairList` because AI models require a consistent, unchanging universe of assets to effectively train over multi-day rolling windows.)*
+
 ### Capabilities
 *   **Automated Trading:** 24/7 autonomous market scanning and execution.
 *   **Dynamic Pair Selection:** Uses `VolumePairList` to actively hunt for the highest volume trading pairs (Top 20/40), rather than relying on a static list.
