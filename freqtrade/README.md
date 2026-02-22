@@ -74,6 +74,12 @@ Our iterative development process tracked the following milestones:
 *   **Target Tuning:** Transitioned FreqAI from predicting strict % returns to evaluating Risk/Reward (Max Profit vs Max Drawdown potentials).
 *   **Hyperparameter Tuning:** Fine-tuned XGBoost Regressor parameters (`max_depth=3`, `learning_rate=0.05`) to prevent overfitting, reducing strategy max drawdown from ~58% to ~28%.
 
+### 6. Strategy Refinement & Linux Migration (Phase 3 FreqAI)
+*   **Regime Filtering:** Upgraded `CombinedStrategy` with a macro 1H 200 EMA trend filter to prevent the bot from catching falling knives in structural bear trends.
+*   **Hub & Spoke DevOps:** Ported native Windows PowerShell CI/CD scripts to robust Linux bash scripts (`run_regression_tests.sh`, `compare_strategies.sh`, `generate_report.sh`) using native `podman-compose` for VPS readiness.
+*   **Dynamic Stake Sizing & Risk:** Scaled `max_open_trades` to 5 for a 20% limit per asset, transitioning from equal-weight capital allocation to confidence-based dynamic sizing (`custom_stake_amount`) driven by RSI exhaustion depth.
+*   **FreqAI (Phase 3 Alpha):** Engineered the `FreqAIStrategy.py` XGBoost machine learning model pipeline. Features dynamically hydrate indicators, run structural prediction models (`&target`) on rolling sliding data windows, and programmatically size bets directly off ML confidence models!
+
 ---
 
 ## 🗺️ Future Roadmap (Pick Up Here)
