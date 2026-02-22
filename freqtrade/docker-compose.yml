@@ -1,22 +1,22 @@
 version: '3'
 services:
   freqtrade:
-    image: freqtradeorg/freqtrade:stable
+    image: docker.io/freqtradeorg/freqtrade:stable
     restart: unless-stopped
     container_name: freqtrade
     ports:
       - "8080:8080"
     volumes:
-      - ../../../../../Documents/Freqtrade/user_data:/freqtrade/user_data
+      - ./user_data:/freqtrade/user_data:z
 
   freqtrade-experimental:
-    image: freqtradeorg/freqtrade:stable
+    image: docker.io/freqtradeorg/freqtrade:stable
     restart: unless-stopped
     container_name: freqtrade-experimental
     ports:
       - "8081:8081"
     volumes:
-      - ../../../../../Documents/Freqtrade/user_data:/freqtrade/user_data
+      - ./user_data:/freqtrade/user_data:z
     command: >
       trade
       --logfile /freqtrade/user_data/logs/freqtrade-experimental.log
@@ -25,13 +25,13 @@ services:
       --strategy SniperStrategy
 
   freqtrade-freqai:
-    image: freqtradeorg/freqtrade:stable_freqai
+    image: docker.io/freqtradeorg/freqtrade:stable_freqai
     restart: unless-stopped
     container_name: freqtrade-freqai
     ports:
       - "8082:8082"
     volumes:
-      - ../../../../../Documents/Freqtrade/user_data:/freqtrade/user_data
+      - ./user_data:/freqtrade/user_data:z
     environment:
       - FREQTRADE__FREQAI__ENABLED=true
     command: >
