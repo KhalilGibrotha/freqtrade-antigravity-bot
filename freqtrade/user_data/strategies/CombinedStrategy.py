@@ -12,6 +12,7 @@ class CombinedStrategy(IStrategy):
     INTERFACE_VERSION = 3
     
     # Hyperopt-derived ROI
+    # We leave this as a final failsafe, but rely primarily on the trailing stop
     minimal_roi = {
         "0": 0.093,
         "17": 0.075,
@@ -19,9 +20,17 @@ class CombinedStrategy(IStrategy):
         "165": 0
     }
     
-    # Hyperopt-derived Stoploss
+    # Hyperopt-derived Stoploss (Hard floor)
     stoploss = -0.248
     
+    # --- NEW: Trailing Stoploss ---
+    trailing_stop = True
+    # Start trailing only when we reach 1% profit
+    trailing_stop_positive = 0.01  
+    # Trail 2% behind the maximum profit reached
+    trailing_stop_positive_offset = 0.02  
+    trailing_only_offset_is_reached = True
+
     # Core timeframe
     timeframe = '5m'
     
@@ -29,16 +38,12 @@ class CombinedStrategy(IStrategy):
     informative_timeframe = '1h'
 
     # Ensure we download enough historical data to calculate the 1h 200 EMA
-    # 200 candles on 1h = 200 hours. We need 200 hours / (5 min candles per hour) = 2400 candles on the 5m timeframe
     startup_candle_count: int = 2400
 
     # Flag to enable custom stake sizing logic 
     use_custom_stoploss = False
 
     def informative_pairs(self):
-        """
-        Define additional informative pair/timeframe combinations to provide to the strategy.
-        """
         pairs = self.dp.current_whitelist()
         informative_pairs = [(pair, self.informative_timeframe) for pair in pairs]
         return informative_pairs
@@ -47,65 +52,82 @@ class CombinedStrategy(IStrategy):
                             proposed_stake: float, min_stake: float, max_stake: float,
                             leverage: float, entry_tag: str, side: str,
                             **kwargs) -> float:
-        """
-        Customize stake size based on the bot's overall global performance across all pairs.
-        - High Win Rate (> 60%): Aggressive (100% of proposed stake)
-        - Moderate Win Rate (40% - 60%): Normal (75% of proposed stake)
-        - Low Win Rate (< 40%): Defensive (50% of proposed stake)
-        """
-        
-        # 1. Look back at the last 7 days of trading history
         lookback_days = 7
         start_date = current_time - timedelta(days=lookback_days)
         
-        # 2. Fetch all CLOSED trades across ALL pairs from the database
         trades = Trade.get_trades([
             Trade.is_open.is_(False),
             Trade.close_date >= start_date
         ]).all()
         
-        # If there is not enough history yet to judge performance, just return the standard stake
         if len(trades) < 5:
             return proposed_stake
             
-        # 3. Calculate Win Rate
         winning_trades = len([t for t in trades if t.close_profit > 0])
         win_rate = winning_trades / len(trades)
         
-        # 4. Dynamically adjust bet size (Turtle vs Aggressive)
         if win_rate > 0.60:
-            # Bull Market / Winning Streak -> Bet 100% of allocation
             new_stake = proposed_stake
             logger.info(f"Global Win Rate high ({win_rate:.2%}). Aggressive sizing: {new_stake}")
-            
         elif win_rate < 0.40:
-            # Bear Market / Losing Streak -> Turtle mode, cut risk in half!
             new_stake = proposed_stake * 0.50
             logger.info(f"Global Win Rate low ({win_rate:.2%}). Defensive sizing applied: {new_stake}")
-            
         else:
-            # Choppy / Average Market -> Reduce slightly to 75%
             new_stake = proposed_stake * 0.75
             logger.info(f"Global Win Rate average ({win_rate:.2%}). Normal sizing applied: {new_stake}")
             
-        # Ensure we don't violate exchange minimums or maximums
         return max(min_stake, min(new_stake, max_stake))
 
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # -- Informative Timeframe (1h) --
-        informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=self.informative_timeframe)
+    # --- NEW: Custom Exit Pricing ---
+    def custom_exit_price(self, pair: str, trade: Trade,
+                          current_time: datetime, proposed_rate: float,
+                          current_profit: float, exit_tag: str, **kwargs) -> float:
+        """
+        Dynamically calculate limit configurations for sells based on the live orderbook.
+        """
+        dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
+        last_candle = dataframe.iloc[-1].squeeze()
         
-        # Calculate 200 EMA on the 1h timeframe
-        informative['ema_200'] = ta.EMA(informative, timeperiod=200)
+        # 1. Ask the exchange for the live orderbook
+        try:
+            orderbook = self.dp.orderbook(pair, 1)
+        except Exception:
+            # If exchange API hiccups, fallback to the strategy's standard proposed rate
+            return proposed_rate
 
-        # Merge the 1h informative dataframe into the 5m dataframe
+        bids = orderbook['bids']
+        asks = orderbook['asks']
+
+        # Ensure orderbook came back populated
+        if not bids or not asks:
+            return proposed_rate
+
+        # Get top bid/ask (index 0 is [price, volume])
+        best_bid_price = bids[0][0]
+        best_ask_price = asks[0][0]
+
+        # 2. Logic: If we are exiting via a Trailing Stop (market is dropping)
+        # We need to get out fast. We price our limit deeply on the bid side to guarantee a fill.
+        if exit_tag == 'trailing_stop_loss':
+            logger.info(f"Trailing Stop triggered for {pair}. Slamming bid at {best_bid_price}")
+            return best_bid_price
+            
+        # 3. Logic: If we are hitting our standard ROI or Exit Signal (taking profit)
+        # We are greedy. Let's aim closer to the Ask price since volume is heavily on our side.
+        if exit_tag in ('roi', 'exit_signal'):
+            greedy_price = best_ask_price * 0.9999 # Just barely under the ask
+            logger.info(f"Profit Take triggered for {pair}. Pushing greedy limit at {greedy_price}")
+            return greedy_price
+
+        # Fallback default
+        return proposed_rate
+
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+        informative = self.dp.get_pair_dataframe(pair=metadata['pair'], timeframe=self.informative_timeframe)
+        informative['ema_200'] = ta.EMA(informative, timeperiod=200)
         dataframe = merge_informative_pair(dataframe, informative, self.timeframe, self.informative_timeframe, ffill=True)
 
-        # -- Core Timeframe (5m) --
-        # RSI
         dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
-        
-        # Bollinger Bands
         bollinger = qtpylib.bollinger_bands(qtpylib.typical_price(dataframe), window=20, stds=2)
         dataframe['bb_lowerband'] = bollinger['lower']
         dataframe['bb_upperband'] = bollinger['upper']
@@ -113,20 +135,12 @@ class CombinedStrategy(IStrategy):
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        # We look for a 1h 200 EMA, but during backtest startup there might be NaN values
-        # We use .get() and fillna to handle the edge case gracefully
         ema_200_1h = dataframe[f"ema_200_{self.informative_timeframe}"]
         
         dataframe.loc[
             (
-                # Higher Timeframe Regime Filter:
-                # 1. Broad market must be in an uptrend (Price > 1h 200 EMA)
                 (dataframe['close'] > ema_200_1h) &
-                
-                # Double Confirmation for Mean Reversion Dip Buy:
-                # 2. Very Oversold (RSI < 18 from Hyperopt)
                 (dataframe['rsi'] < 18) &
-                # 3. Price below Lower Bollinger Band
                 (dataframe['close'] < dataframe['bb_lowerband']) &
                 (dataframe['volume'] > 0)
             ),
@@ -137,9 +151,7 @@ class CombinedStrategy(IStrategy):
         dataframe.loc[
             (
                 (
-                    # Take profit if Very Overbought (RSI > 89)
                     (dataframe['rsi'] > 89) |
-                    # OR Price spikes above Upper Bollinger Band
                     (dataframe['close'] > dataframe['bb_upperband'])
                 ) &
                 (dataframe['volume'] > 0)
